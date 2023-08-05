@@ -3,8 +3,10 @@ import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
+import axios from "axios";
+import ResponsiveAppBar from '../AppBar/appbar';
 
-const products = [
+/*const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые', category: "cake"},
     {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая', category: "pirog"},
     {id: '3', title: 'Джинсы 2', price: 5000, description: 'Синего цвета, прямые', category: "cake"},
@@ -13,7 +15,18 @@ const products = [
     {id: '6', title: 'Куртка 7', price: 600, description: 'Зеленого цвета, теплая', category: "cake"},
     {id: '7', title: 'Джинсы 4', price: 5500, description: 'Синего цвета, прямые', category: "pirog"},
     {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая', category: "pirog"},
-]
+]*/
+
+
+//const products = axios.get(`http://80.90.186.129:3000/api/dish/getAll`);
+//console.log(products);
+
+
+
+
+
+
+
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
@@ -24,6 +37,24 @@ const getTotalPrice = (items = []) => {
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
+    const [products, setProducts] = useState([]);
+
+    async function initProducts() {
+        await fetch(`http://80.90.186.129:3000/api/dish/getAll`)
+            .then(response => response.json())
+            .then(response => {
+                setProducts(response);
+                console.log(response);
+            }
+            )
+            .catch(err => console.error(err));
+          
+    }
+    
+
+
+    initProducts();
+
 
     const onSendData = useCallback(() => {
         const data = {
@@ -69,7 +100,12 @@ const ProductList = () => {
         }
     }
 
+
     return (
+        <div>
+         <div className='nav'>
+            <ResponsiveAppBar/>
+        </div> 
         <div className={'list'}>
             {products.map(item => (
                 <ProductItem
@@ -78,7 +114,10 @@ const ProductList = () => {
                     className={'item'}
                 />
             ))}
+       
         </div>
+        </div>
+
     );
 };
 

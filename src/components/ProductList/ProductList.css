@@ -2,6 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    
+}
+
+.nav{
+    position: sticky; top: 0
 }
 
 .item {

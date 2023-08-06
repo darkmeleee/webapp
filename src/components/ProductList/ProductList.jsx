@@ -5,6 +5,7 @@ import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 import axios from "axios";
 import ResponsiveAppBar from '../AppBar/appbar';
+import SimpleBottomNavigation from '../cartBottom/cartBottom';
 
 /*const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые', category: "cake"},
@@ -44,10 +45,10 @@ const ProductList = () => {
             .then(response => response.json())
             .then(response => {
                 setProducts(response);
-                console.log(response);
+              //  console.log(response);
             }
             )
-            .catch(err => console.error(err));
+            
           
     }
     
@@ -116,6 +117,8 @@ const ProductList = () => {
             ))}
        
         </div>
+        <SimpleBottomNavigation></SimpleBottomNavigation>
+
         </div>
 
     );

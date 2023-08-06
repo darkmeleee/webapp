@@ -12,11 +12,17 @@
 
 
 .img {
-    width: 100%;
+    display: flex;
+    width: 100px;
     background: lightgray;
     height: 100px;
     margin: 0 auto;
     background: var(--tg-theme-button-color);
+    border-radius: 50%;
+    object-fit: cover;
+    perspective: 1px;
+    overflow: hidden;
+    margin-bottom: 10px;
 }
 
 .description {

@@ -6,11 +6,13 @@ const ProductItem = ({product, className, onAdd}) => {
 
     const onAddHandler = () => {
         onAdd(product);
+        console.log(product);
+        alert(`Сумма вашего заказа увеличилась на ${product.price}`)
     }
 
     return (
        <div className={'product ' + className}>
-           <div className={'img'}/>
+           <div className={'img'}><img src={product.imageUrl}></img>ssdsds</div>
             <div className={'title'}>{product.name}</div>
             <div className={'description'}>{product.description}</div>
             <div className={'price'}>

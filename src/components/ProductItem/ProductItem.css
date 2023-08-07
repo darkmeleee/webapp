@@ -22,7 +22,7 @@
     object-fit: cover;
     perspective: 1px;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin-bottom: 10xpx;
 }
 
 .description {

@@ -7,7 +7,7 @@ import axios from "axios";
 import ResponsiveAppBar from '../AppBar/appbar';
 import SimpleBottomNavigation from '../cartBottom/cartBottom';
 var usage = 0;
-
+    
 
 /*const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые', category: "cake"},
@@ -69,13 +69,15 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://85.119.146.179:8000/web-data', {
+        console.log()
+        fetch('https://webapp-bot.onrender.com/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
         })
+        alert("cунц урфу");
     }, [addedItems])
 
     useEffect(() => {

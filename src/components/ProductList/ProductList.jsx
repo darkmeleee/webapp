@@ -41,7 +41,7 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     async function initProducts() {
-        await fetch(`http://80.90.186.129:3000/api/dish/getAll`)
+        await fetch(`https://backend-trcq.onrender.com/api/dish/getAll`)
             .then(response => response.json())
             .then(response => {
                 setProducts(response);

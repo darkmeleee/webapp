@@ -6,6 +6,8 @@ import {useCallback, useEffect} from "react";
 import axios from "axios";
 import ResponsiveAppBar from '../AppBar/appbar';
 import SimpleBottomNavigation from '../cartBottom/cartBottom';
+var usage = 0;
+
 
 /*const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые', category: "cake"},
@@ -41,6 +43,8 @@ const ProductList = () => {
     const [products, setProducts] = useState([]);
 
     async function initProducts() {
+        if(usage == 1) return;
+        else{
         await fetch(`https://backend-trcq.onrender.com/api/dish/getAll`)
             .then(response => response.json())
             .then(response => {
@@ -48,6 +52,8 @@ const ProductList = () => {
               //  console.log(response);
             }
             )
+            usage = 1;
+        }
             
           
     }

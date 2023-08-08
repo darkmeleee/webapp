@@ -6,6 +6,13 @@ import {useCallback, useEffect} from "react";
 import axios from "axios";
 import ResponsiveAppBar from '../AppBar/appbar';
 import SimpleBottomNavigation from '../cartBottom/cartBottom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useNavigate
+  } from "react-router-dom";
 var usage = 0;
     
 
@@ -38,6 +45,7 @@ const getTotalPrice = (items = []) => {
 }
 
 const ProductList = () => {
+    const history = useNavigate();
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
     const [products, setProducts] = useState([]);
@@ -69,15 +77,15 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        console.log()
-        fetch('https://webapp-bot.onrender.com/web-data', {
+        history("/form", {state: data});
+       /*fetch('https://webapp-bot.onrender.com/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        })
-        alert("cунц урфу");
+        })*/
+        
     }, [addedItems])
 
     useEffect(() => {
@@ -125,8 +133,7 @@ const ProductList = () => {
             ))}
        
         </div>
-        <SimpleBottomNavigation></SimpleBottomNavigation>
-
+=
         </div>
 
     );

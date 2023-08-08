@@ -7,7 +7,6 @@ const ProductItem = ({product, className, onAdd}) => {
     const onAddHandler = () => {
         onAdd(product);
         console.log(product);
-        alert(`Сумма вашего заказа увеличилась на ${product.price}`)
     }
 
     return (

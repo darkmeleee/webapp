@@ -5,6 +5,22 @@
     
 }
 
+body::before{
+    background-image: url('../../icons/bg.svg');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.75;
+
+}
+
+body{
+    content:"";
+}
+
 .nav{
     position: sticky; top: 0
 }
@@ -16,9 +32,9 @@
 
 .img {
     
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
+        width: 187px;
+        height: 187px;
+        border-radius: 9px;
         object-fit: cover;
       
 }

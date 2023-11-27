@@ -10,15 +10,13 @@ const ProductItem = ({product, className, onAdd}) => {
     }
 
     return (
+        
        <div className={'product ' + className}>
+        <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'></link>
            <div className={'img'}><img src={product.imageUrl}></img>ssdsds</div>
             <div className={'title'}>{product.name}</div>
-            <div className={'description'}>{product.description}</div>
-            <div className={'price'}>
-                <span>Стоимость: <b>{product.price}</b></span>
-            </div>
             <Button className={'add-btn'} onClick={onAddHandler}>
-                Добавить в корзину
+                 {product.price} ₽
             </Button>
             
         </div>

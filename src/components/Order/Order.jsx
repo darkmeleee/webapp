@@ -1,6 +1,9 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import './Order.css';
 import {useTelegram} from "../../hooks/useTelegram";
+import { AddressSuggestions } from 'react-dadata';
+import 'react-dadata/dist/react-dadata.css';
+
 
 import {
     BrowserRouter as Router,
@@ -78,16 +81,15 @@ const Order = () => {
         setTime(e.target.value)
     }
 
+   const locations = {
+        "city": "Екатеринбург"   
+    }
+
     return (
         <div className={"form"}>
             <h3>Введите ваши данные</h3>
-            <input
-                className={'input'}
-                type="text"
-                placeholder={'Улица'}
-                value={street}
-                onChange={onChangeStreet}
-            />
+            <br></br>
+            <AddressSuggestions token="69a955bf27ce46407c3c605bcd923a96458d519b" value={street} onChange={setStreet} filterLocations={locations}/>
             <select value={subject} onChange={onChangeSubject} className={'select'}>
                 <option value={'physical'}>Самовывоз</option>
                 <option value={'legal'}>Доставка</option>

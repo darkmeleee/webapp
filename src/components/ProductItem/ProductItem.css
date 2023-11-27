@@ -2,20 +2,23 @@
     display: flex;
     flex-direction: column;
     border: 1px solid var(--tg-theme-button-color);
-    margin-top: 25px;
-    padding: 15px;
+    margin-top: 50px;
+    padding: 5px;
     width: 170px;
     position: relative;
     z-index: 1;
 
-    .img {
+.img {
       display: flex;
-      width: 100px;
+      gap: 30px;
+      flex-direction: row;
+      padding-right: 30px;
+      width: 150px;
       background: lightgray;
-      height: 100px;
-      margin: 0 auto;
+      height: 150px;
+      margin: 10 auto;
       background: var(--tg-theme-button-color);
-      border-radius: 50%;
+      border-radius: 9px;
       object-fit: cover;
       perspective: 1px;
       overflow: hidden;
@@ -25,8 +28,8 @@
   .add-btn {
     appearance: button;
     backface-visibility: hidden;
-    background-color: #405cf5;
-    border-radius: 6px;
+    background: rgba(104, 59, 43, 1);
+    border-radius: 13px;
     border-width: 0;
     box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
     box-sizing: border-box;
@@ -62,6 +65,16 @@
 
 .description {
     font-size: 0.8em;
+}
+
+.title{
+  font-family: Montserrat;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+
 }
 
 

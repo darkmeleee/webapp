@@ -1,26 +1,22 @@
 import React, {useState} from 'react';
-import './ProductList.css';
+import './ProductList2.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 import axios from "axios";
 import ResponsiveAppBar from '../AppBar/appbar';
 import SimpleBottomNavigation from '../cartBottom/cartBottom';
-import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query-devtools";
 import { useQuery } from "react-query";
-
 import {
     BrowserRouter as Router,
-    Switch, 
+    Switch,
     Route,
     Link,
     useNavigate
   } from "react-router-dom";
 var usage = 0;
     
-const queryClient = new QueryClient({});
-
 
 
 
@@ -37,18 +33,20 @@ const getTotalPrice = (items = []) => {
 }
 
 const ProductList = () => {
-    const { isLoading, isError, data, error, refetch } = useQuery(["products"],  () =>
-    axios
-      .get("https://backend-trcq.onrender.com/api/dish/getAll")
-      
-
-      .then((res) => res.data)
-      );
-
-      
     const history = useNavigate();
     const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
+    const { isLoading, isError, data, error, refetch } = useQuery(["sladkoe"],  () =>
+    axios
+      .get("https://backend-trcq.onrender.com/api/dish/getSladkoe")
+      .then((res) => res.data)
+      );
+    
+    
+
+
+
+
     const onSendData = useCallback(() => {
         const data1 = {
             products: addedItems,
@@ -66,23 +64,10 @@ const ProductList = () => {
             tg.offEvent('mainButtonClicked', onSendData)
         }
     }, [onSendData])
-    
- 
 
-  
- 
-  if (isLoading) return "Загрузка...";
+    if (isLoading) return "Загрузка...";
  
   if (error){ return "An error has occurred: " + error.message; console.log}
-
- 
-    function idk() {
-        axios
-            .get("https://backend-trcq.onrender.com/api/dish/getSitnoe")
-            .then((res) => res.data)
-    }
-
-    
 
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
@@ -108,8 +93,7 @@ const ProductList = () => {
 
 
     return (
-
-        <div className="page">
+        <div>
          
         <div className={'list'}>
             {data.map(item => (
@@ -123,7 +107,6 @@ const ProductList = () => {
         </div>
                 
         </div>
-     
 
     );
 };

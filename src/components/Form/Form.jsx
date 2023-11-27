@@ -38,8 +38,7 @@ const Form = () => {
             body: JSON.stringify(data11)
 
         })    }, [products])*/
-        history("/order", {state: data11});
-        alert("da");
+        history("/order", {state: data11}); 
     })
 
     useEffect(() => {

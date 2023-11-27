@@ -4,31 +4,11 @@ import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
 import axios from "axios";
-import ResponsiveAppBar from '../AppBar/appbar';
-import SimpleBottomNavigation from '../cartBottom/cartBottom';
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query-devtools";
 import { useQuery } from "react-query";
 
 import {
-    BrowserRouter as Router,
-    Switch, 
-    Route,
-    Link,
     useNavigate
   } from "react-router-dom";
-var usage = 0;
-    
-const queryClient = new QueryClient({});
-
-
-
-
-
-
-
-
-
 
 const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {

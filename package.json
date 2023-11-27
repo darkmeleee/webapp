@@ -16,7 +16,6 @@
     "react-dadata": "^2.23.1",
     "react-dom": "^18.2.0",
     "react-query": "^3.39.3",
-    "react-query-devtools": "^2.6.3",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.0.7",

@@ -1,25 +1,9 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './Lk.css';
 import {useTelegram} from "../../hooks/useTelegram";
-import { AddressSuggestions } from 'react-dadata';
 import 'react-dadata/dist/react-dadata.css';
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query-devtools";
-import { useQuery } from "react-query";
 import styled from "styled-components";
 import axios from "axios";
-
-
-
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useNavigate,
-    useLocation
-  } from "react-router-dom"; 
-  // https://webapp-bot.onrender.com/
 
 const Lk = () => {
     

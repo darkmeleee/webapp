@@ -5,6 +5,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        xxs: '384px',
+        xs: '512px',
+      },
       fontFamily: {
         sans: 'Montserrat',
       },

@@ -9,7 +9,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+.App {
+  min-height: 100vh;
+  max-width: 100%;
+}
 body {
   // background: var(--tg-theme-bg-color);
   color: var(--tg-theme-text-color);

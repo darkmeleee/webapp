@@ -27,8 +27,8 @@ const Header = () => {
   }
 
   return (
-    <div className="flex flex-row w-screen justify-between place-items-center p-5">
-      <div className="cursor-pointer">
+    <div className="flex flex-row w-screen justify-between md:justify-around place-items-center p-5">
+      <div className="cursor-pointer w-[36px] h-[24px]">
         <a onClick={onReturnButtonClick}>
           <img
             src={icon}

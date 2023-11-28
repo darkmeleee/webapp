@@ -80,7 +80,7 @@ const ProductList = () => {
   }
 
   return (
-    <div className="page p-5">
+    <div className="page p-1 pt-4 xxs:p-5">
       <div className="slider h-auto flex gap-x-[15px] py-4 w-full text-2xl place-items-center select-none">
         <label htmlFor="pirogi" className="sitn text-brown-accent">
           Сытные

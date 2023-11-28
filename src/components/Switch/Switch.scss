@@ -1,0 +1,60 @@
+$switchWidth: 70px;
+$thumbWidth: 12px;
+$thumbHeight: 12px;
+$bgInactive: #683B2B;
+$bgActive: #EAD0B9;
+
+.PirogiSwitch {
+    display: flex !important;
+    padding: 0px !important;
+    width: $switchWidth !important;
+    height: 20px !important;
+    width: $switchWidth !important;
+    & .MuiSwitch-input {
+        width: $switchWidth + 20px !important;
+        left: 0;
+        top: 2px;
+    }
+    &:active {
+        & .MuiSwitch-thumb {
+            width: $thumbWidth * 1.125;
+        }
+        &.MuiSwitch-switchBase.Mui-checked {
+            transform: translateX($switchWidth * 0.9) !important;
+        }
+    }
+    .MuiSwitch-switchBase {
+        padding: 4px 0;
+        &.Mui-checked {
+            opacity: 1;
+            transform: translateX($switchWidth * 0.7) !important;
+            color: $bgInactive !important;
+            & + .MuiSwitch-track {
+                opacity: 1 !important;
+                background-color: $bgActive !important;
+            }
+            & .MuiSwitch-thumb {
+                color: $bgInactive !important;
+            }
+            & .MuiSwitch-input {
+                left: -($switchWidth ) !important;
+            }
+        }
+    }
+    & .MuiSwitch-thumb {
+        box-shadow: 0 2px 4px 0 rgb(0 35 11 / 20%);
+        padding-top: 2px;
+        margin-left: 2px !important;
+        width: $thumbWidth;
+        height: $thumbHeight;
+        border-radius: 6px;
+        transition: width 200ms;
+    }
+    & .MuiSwitch-track {
+      border-radius: 8px;
+      margin:0;
+      opacity: 1;
+      background-color: $bgInactive !important;
+      box-sizing: border-box;
+    }
+}

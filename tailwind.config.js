@@ -13,7 +13,8 @@ module.exports = {
         sans: 'Montserrat',
       },
       colors: {
-        'brown-accent': '#683B2B'
+        'brown-accent': '#683B2B',
+        'tg-theme-bg': 'var(--tg-theme-bg-color)',
       }
     },
   },

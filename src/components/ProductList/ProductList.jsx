@@ -16,16 +16,17 @@ const getTotalPrice = (items = []) => {
 };
 
 const ProductList = () => {
-  const { isLoading, data, error } = useQuery(
-    ["products"],
-    () =>
-      axios
-        .get("https://backend-trcq.onrender.com/api/dish/getAll")
-        .then((res) => res.data)
+  const { isLoading, isSuccess, data, error } = useQuery(["products"], () =>
+    axios
+      .get("https://backend-trcq.onrender.com/api/dish/getAll")
+      .then((res) => res.data)
   );
-
-  const sweet = data.filter(el => el.type == 1);
-  const sitnoe = data.filter(el => el.type == 0);
+  let sweet = [];
+  let sitnoe = []
+  if (isSuccess) {
+    sweet = data.filter((el) => el.type == 1);
+    sitnoe = data.filter((el) => el.type == 0);
+  }
 
   const history = useNavigate();
   const [addedItems, setAddedItems] = useState([]);
@@ -75,16 +76,16 @@ const ProductList = () => {
     }
   };
   function pirogiSwitchToggle(e) {
-    setIsSweet(!isSweet)
+    setIsSweet(!isSweet);
   }
 
   return (
     <div className="page p-5">
-      <div className="slider h-auto flex gap-x-[15px] py-4 w-full text-2xl place-items-center">
+      <div className="slider h-auto flex gap-x-[15px] py-4 w-full text-2xl place-items-center select-none">
         <label htmlFor="pirogi" className="sitn text-brown-accent">
           Сытные
         </label>
-        <PirogiSwitch id="pirogi" onChange={pirogiSwitchToggle}/>
+        <PirogiSwitch id="pirogi" onChange={pirogiSwitchToggle} />
         <label htmlFor="pirogi" className="slad text-brown-accent">
           Сладкие
         </label>

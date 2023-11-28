@@ -9,7 +9,7 @@ const ProductItem = ({ product, className, onAdd }) => {
   };
 
   return (
-    <div className="product flex flex-col gap-y-2 text-brown-accent max-w-[187px]">
+    <div className="product flex flex-col gap-y-2 text-brown-accent max-w-[187px] cursor-pointer">
       <div className="rounded-lg">
         <img className="rounded-[9px] min-h-[187px]" src={product.imageUrl} alt={product.name} />
       </div>

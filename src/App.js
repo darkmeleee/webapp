@@ -9,7 +9,7 @@ import Order from "./components/Order/Order";
 import Lk from "./components/Lk/Lk";
 import Registration from "./components/Registration/Registration";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
+import { ProductPage } from "./components/ProductPage/ProductPage";
 
 const queryClient = new QueryClient({});
 
@@ -32,6 +32,7 @@ function App() {
           {/* <Route path={'sitnoe'} element={<ProductList />}/>
                 <Route path={'sladkoe'} element={<ProductList2 />}/> */}
           <Route path={"reg"} element={<Registration>/</Registration>} />
+          <Route path={"product/:id"} element={<ProductPage />} />
         </Routes>
       </div>
     </QueryClientProvider>

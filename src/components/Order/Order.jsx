@@ -6,11 +6,6 @@ import 'react-dadata/dist/react-dadata.css';
 
 
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useNavigate,
     useLocation
   } from "react-router-dom"; 
   // https://webapp-bot.onrender.com/

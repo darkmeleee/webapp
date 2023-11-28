@@ -24,6 +24,9 @@ const ProductList = () => {
         .then((res) => res.data)
   );
 
+  const sweet = data.filter(el => el.type == 1);
+  const sitnoe = data.filter(el => el.type == 0);
+
   const history = useNavigate();
   const [addedItems, setAddedItems] = useState([]);
   const [isSweet, setIsSweet] = useState(true);
@@ -73,7 +76,6 @@ const ProductList = () => {
   };
   function pirogiSwitchToggle(e) {
     setIsSweet(!isSweet)
-    console.log(isSweet)
   }
 
   return (
@@ -88,7 +90,7 @@ const ProductList = () => {
         </label>
       </div>
       <div className="flex flex-wrap gap-x-4 gap-y-5">
-        {data.map((item) => (
+        {(isSweet ? sweet : sitnoe).map((item) => (
           <ProductItem
             key={item.id}
             product={item}

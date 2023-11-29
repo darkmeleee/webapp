@@ -6,7 +6,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(
     localStorage.getItem("cartItems")
       ? JSON.parse(localStorage.getItem("cartItems"))
-      : [],
+      : []
   );
 
   const addToCart = (item) => {
@@ -17,8 +17,8 @@ export const CartProvider = ({ children }) => {
         cartItems.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + 1 }
-            : cartItem,
-        ),
+            : cartItem
+        )
       );
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
@@ -35,8 +35,8 @@ export const CartProvider = ({ children }) => {
         cartItems.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity - 1 }
-            : cartItem,
-        ),
+            : cartItem
+        )
       );
     }
   };
@@ -48,7 +48,7 @@ export const CartProvider = ({ children }) => {
   const getCartTotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
-      0,
+      0
     );
   };
 

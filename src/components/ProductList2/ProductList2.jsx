@@ -22,7 +22,7 @@ const ProductList = () => {
     () =>
       axios
         .get("https://backend-trcq.onrender.com/api/dish/getSladkoe")
-        .then((res) => res.data),
+        .then((res) => res.data)
   );
 
   const onSendData = useCallback(() => {

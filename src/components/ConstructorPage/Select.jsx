@@ -39,7 +39,7 @@ const Option = styled(BaseOption)(
       &:last-of-type {
         border-bottom: none;
       }
-      `,
+      `
 );
 Select.Option = Option;
 const blue = {
@@ -117,7 +117,7 @@ const StyledButton = styled(Button, { shouldForwardProp: () => true })(
       top: 0;
       right: 10px;
     }
-    `,
+    `
 );
 
 const Listbox = styled("ul")(
@@ -137,7 +137,7 @@ const Listbox = styled("ul")(
     box-shadow: 0px 2px 4px ${
       theme.palette.mode === "dark" ? "rgba(0,0,0, 0.5)" : "rgba(0,0,0, 0.05)"
     };
-    `,
+    `
 );
 
 const Popper = styled(BasePopper)`

@@ -2,6 +2,8 @@ import constructor from "../../assets/constructor.png";
 import Button from "../Button/Button";
 import { NachinkaSelect } from "./NachinkaSelect";
 import { useState, useEffect } from "react";
+import "./ConstructorPage.scss"
+import { Select } from "./Select";
 
 export const ConstructorPage = (props) => {
   const maxNachinkas = 3;
@@ -14,37 +16,39 @@ export const ConstructorPage = (props) => {
     "Сгущенка",
     "Микс ягод",
   ];
-  const nachinkaSitnoe = ["Ветчина", "Капуста", "Рыба", "Грибы"];
+  const nachinkasSitnoe = ["Ветчина", "Капуста", "Рыба", "Грибы"];
   const [isSweet, setIsSweet] = useState(true);
   const [nachinkas, setNachinkas] = useState([]);
 
   useEffect(() => {
-    setNachinkas([(isSweet ? nachinkasSweet : nachinkaSitnoe)[0]]);
-    nachinkasAvailable = isSweet ? nachinkasSweet : nachinkaSitnoe;
+    setNachinkas([(isSweet ? nachinkasSweet : nachinkasSitnoe)[0]]);
+    nachinkasAvailable = isSweet ? nachinkasSweet : nachinkasSitnoe;
     console.log("change");
   }, [isSweet]);
   if (nachinkasAvailable.length === 0)
-    nachinkasAvailable = isSweet ? nachinkasSweet : nachinkaSitnoe;
+    nachinkasAvailable = isSweet ? nachinkasSweet : nachinkasSitnoe;
 
   function addNachinka() {
     if (nachinkas.length < maxNachinkas)
       setNachinkas([...nachinkas, nachinkasAvailable[0]]);
   }
   function removeNachinka(e) {
+    if (nachinkas.length === 1) return;
+
     setNachinkas(nachinkas.filter((_, i) => !(i == e.parentElement.id)));
   }
   function changeNachinka(index, val) {
-    console.log("change", index, val)
+    console.log("change", index, val);
     nachinkas[parseInt(index)] = val;
     setNachinkas(nachinkas);
   }
-  function changeBase(e) {
-    setIsSweet(e.target.value == "1");
+  function changeBase(val) {
+    setIsSweet(val == "1");
   }
   console.log(nachinkas);
 
   return (
-    <div className="flex flex-col h-[calc(100vh_-_158px)] p-0 xxs:p-5 pb-8 gap-y-6 text-brown-accent font-medium">
+    <div className="flex flex-col h-[calc(100vh_-_158px)] p-0 xxs:p-5 pb-8 px-4 gap-y-6 text-brown-accent font-medium">
       <div>
         <p className="text-[25px]">Конструктор пирогов</p>
       </div>
@@ -54,23 +58,27 @@ export const ConstructorPage = (props) => {
       <div>
         <p className="text-[18px]">
           тесто слоеное, свинина, говядина, лук, морковь, сливочное масло,
-          картофель, соль, перец, яичный желто
+          картофель, соль, перец, яичный желток
         </p>
       </div>
-      <div className="flex flex-col">
-        <div className="flex justify-between">
-          <select defaultValue="1" onChange={changeBase}>
+      <div className="flex flex-col gap-y-[15px]">
+        <div className="flex gap-x-4">
+          {/* <select className="select" defaultValue="1" onChange={changeBase}>
             <option value="0">Сытный</option>
             <option value="1">Сладкий</option>
-          </select>
-          <div>Вес</div>
+          </select> */}
+          <Select defaultValue={1} onChange={(_, newValue) => changeBase(newValue)}>
+            <Select.Option value={0}>Сытный</Select.Option>
+            <Select.Option value={1}>Сладкий</Select.Option>
+          </Select>
+          <div className="btn">Вес</div>
         </div>
         {nachinkas.map((el, i) => (
           <NachinkaSelect
             key={Math.random()}
             id={i}
             value={el}
-            onChange={changeNachinka}
+            valueChanged={changeNachinka}
             onRemove={removeNachinka}
             available={nachinkasAvailable}
           />

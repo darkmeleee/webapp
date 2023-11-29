@@ -11,6 +11,7 @@ import Registration from "./components/Registration/Registration";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ProductPage } from "./components/ProductPage/ProductPage";
 import { ConstructorPage } from "./components/ConstructorPage/ConstructorPage";
+import { CartPage } from "./components/CartPage/CartPage";
 
 const queryClient = new QueryClient({});
 
@@ -35,6 +36,7 @@ function App() {
           <Route path={"reg"} element={<Registration>/</Registration>} />
           <Route path={"product/:id"} element={<ProductPage />} />
           <Route path={"constructor"} element={<ConstructorPage />} />
+          <Route path={"cart"} element={<CartPage />} />
         </Routes>
       </div>
     </QueryClientProvider>

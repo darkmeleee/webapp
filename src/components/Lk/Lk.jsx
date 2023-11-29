@@ -12,7 +12,7 @@ const Lk = () => {
     async () =>
       await axios
         .get(`https://backend-trcq.onrender.com/api/user/get?id=${user.id}`)
-        .then((res) => res.data)
+        .then((res) => res.data),
   );
   const [username, setUsername] = useState();
   const [phone, setPhone] = useState("");

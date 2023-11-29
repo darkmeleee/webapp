@@ -14,7 +14,7 @@ export const ProductPage = (props) => {
     {
       refetchInterval: false,
       refetchIntervalInBackground: false,
-    }
+    },
   );
 
   if (isLoading) return <center>Загрузка...</center>;

@@ -15,7 +15,7 @@ const ProductList = () => {
   const { isLoading, isSuccess, data, error } = useQuery(["products"], () =>
     axios
       .get("https://backend-trcq.onrender.com/api/dish/getAll")
-      .then((res) => res.data)
+      .then((res) => res.data),
   );
   let sweet = [];
   let sitnoe = [];

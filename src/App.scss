@@ -18,7 +18,7 @@ body {
   color: var(--tg-theme-text-color);
   max-width: 100vw;
   width: 100vw;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   // &::before {
   //   z-index: -1;
   //   position: absolute;
@@ -32,7 +32,7 @@ body {
 
 #root {
   min-height: 100vh;
-  background: url('./icons/bg.svg');
+  background: url("./icons/bg.svg");
   background-attachment: fixed;
   background-size: cover;
 }

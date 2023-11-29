@@ -1,24 +1,22 @@
 .list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.nav{
-    position: sticky; top: 0
+.nav {
+  position: sticky;
+  top: 0;
 }
 
 .item {
-    margin-right: 10px;
-    margin-bottom: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .img {
-    
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-      
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
 }

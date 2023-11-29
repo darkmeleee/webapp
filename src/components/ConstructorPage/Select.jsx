@@ -29,7 +29,7 @@ Select.propTypes = {
   }),
 };
 const Option = styled(BaseOption)(
-    ({ theme }) => `
+  ({ theme }) => `
       font-family: Montserrat, sans-serif;
       list-style: none;
       padding: 5px 8px;
@@ -40,8 +40,8 @@ const Option = styled(BaseOption)(
         border-bottom: none;
       }
       `
-  );
-Select.Option = Option
+);
+Select.Option = Option;
 const blue = {
   100: "#DAECFF",
   200: "#99CCF3",

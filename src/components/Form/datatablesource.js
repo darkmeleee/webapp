@@ -1,16 +1,10 @@
-
-
 export const userColumns = [
   {
     field: "name",
     headerName: "Имя",
     width: 230,
     renderCell: (params) => {
-      return (
-        <div className="cellWithImg">
-          {params.row.name}
-        </div>
-      );
+      return <div className="cellWithImg">{params.row.name}</div>;
     },
   },
   {
@@ -18,8 +12,6 @@ export const userColumns = [
     headerName: "Цена",
     width: 100,
   },
-  
 ];
-
 
 //temporary da

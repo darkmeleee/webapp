@@ -11,12 +11,7 @@ export const NachinkaSelect = (props) => {
   }
   return (
     <div className="flex gap-x-4 font-medium" id={props.id}>
-      <Select
-        className=""
-        defaultValue={value}
-        ref={select}
-        onChange={(_, newVal) => onSelect(newVal)}
-      >
+      <Select className="" defaultValue={value} ref={select} onChange={(_, newVal) => onSelect(newVal)}>
         {props.available.map((el) => (
           <Select.Option key={el} value={el}>
             {el}
@@ -34,11 +29,7 @@ export const NachinkaSelect = (props) => {
           <option key={el}>{el}</option>
         ))}
       </select> */}
-      {props.id === 0 ? (
-        ""
-      ) : (
-        <button onClick={() => props?.onRemove(select.current)}>Удалить</button>
-      )}
+      { props.id === 0 ? "" : <button onClick={() => props?.onRemove(select.current)}>Удалить</button>}
     </div>
   );
 };

@@ -1,16 +1,16 @@
 body {
-  margin: 0;
-}
-.container {
-  margin: none;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-}
-.bottom {
-  margin-top: -3em;
-  text-align: center;
-  width: 1200;
-}
+    margin: 0;
+  }
+  .container {
+    margin: none;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  .bottom {
+    margin-top: -3em;
+    text-align: center;
+    width: 1200;
+  }

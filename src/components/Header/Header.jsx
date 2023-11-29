@@ -11,7 +11,7 @@ import { CartContext } from "../../context/CartContext";
 const Header = () => {
   const { cartItems } = useContext(CartContext);
   const history = useNavigate();
-
+ 
   function onClickUsername() {
     history("/lk");
     //  alert(user.id);
@@ -43,7 +43,7 @@ const Header = () => {
       </div>
       <div className="cursor-pointer flex">
         <span className="absolute h-6 w-6 place-items-center place-content-center flex self-start ml-[22px] -mt-[4px] z-10 bg-brown-accent rounded-full border-[1px] text-white border-white">
-          {cartItems.reduce((acc, item) => (acc += item.quantity), 0)}
+          {cartItems.reduce((acc, item) => acc += item.quantity, 0)}
         </span>
         <img src={cart} className="relative z-0s" onClick={gotoCart} />
       </div>

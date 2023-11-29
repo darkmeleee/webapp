@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ProductList.css";
 import ProductItem from "../ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram";
@@ -8,14 +8,11 @@ import { useQuery } from "react-query";
 
 import { useNavigate } from "react-router-dom";
 import { PirogiSwitch } from "../Switch/Switch";
-
-const getTotalPrice = (items = []) => {
-  return items.reduce((acc, item) => {
-    return (acc += item.price);
-  }, 0);
-};
+import { CartContext } from "../../context/CartContext";
 
 const ProductList = () => {
+
+  const { cartItems, addToCart, getCartTotal } = useContext(CartContext)
   const { isLoading, isSuccess, data, error } = useQuery(["products"], () =>
     axios
       .get("https://backend-trcq.onrender.com/api/dish/getAll")
@@ -29,17 +26,16 @@ const ProductList = () => {
   }
 
   const history = useNavigate();
-  const [addedItems, setAddedItems] = useState([]);
   const [isSweet, setIsSweet] = useState(true);
   const { tg, queryId } = useTelegram();
   const onSendData = useCallback(() => {
     const data1 = {
-      products: addedItems,
-      totalPrice: getTotalPrice(addedItems),
+      products: cartItems,
+      totalPrice: getCartTotal(),
       queryId,
     };
     history("/form", { state: data1 });
-  }, [addedItems]);
+  }, [cartItems]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -55,23 +51,14 @@ const ProductList = () => {
   }
 
   const onAdd = (product) => {
-    const alreadyAdded = addedItems.find((item) => item.id === product.id);
-    let newItems = [];
+    addToCart(product);
 
-    if (alreadyAdded) {
-      newItems = addedItems.filter((item) => item.id !== product.id);
-    } else {
-      newItems = [...addedItems, product];
-    }
-
-    setAddedItems(newItems);
-
-    if (newItems.length === 0) {
+    if (cartItems.length === 0) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
       tg.MainButton.setParams({
-        text: `Купить ${getTotalPrice(newItems)}`,
+        text: `Купить ${getCartTotal()}`,
       });
     }
   };

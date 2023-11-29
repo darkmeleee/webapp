@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import icon from "../../icons/bak.svg";
 import logo from "../../icons/logo.svg";
 import Button from "../Button/Button";
-import cart from '../../icons/cart.svg'
+import cart from "../../icons/cart.svg";
 import { useTelegram } from "../../hooks/useTelegram";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 const Header = () => {
-  const { user, onClose } = useTelegram();
+  const { cartItems } = useContext(CartContext);
   const history = useNavigate();
 
   function onClickUsername() {
@@ -40,8 +41,11 @@ const Header = () => {
       <div className="logo cursor-pointer h-[118px]">
         <img src={logo} onClick={onReturnButtonClick}></img>
       </div>
-      <div className="cursor-pointer">
-        <img src={cart} onClick={gotoCart}/>
+      <div className="cursor-pointer flex">
+        <span className="absolute h-6 w-6 place-items-center place-content-center flex self-start ml-[22px] -mt-[4px] z-10 bg-brown-accent rounded-full border-[1px] text-white border-white">
+          {cartItems.reduce((acc, item) => acc += item.quantity, 0)}
+        </span>
+        <img src={cart} className="relative z-0s" onClick={gotoCart} />
       </div>
     </div>
   );

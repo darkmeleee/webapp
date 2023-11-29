@@ -11,7 +11,7 @@ import { CartContext } from "../../context/CartContext";
 const Header = () => {
   const { cartItems } = useContext(CartContext);
   const history = useNavigate();
-
+ 
   function onClickUsername() {
     history("/lk");
     //  alert(user.id);

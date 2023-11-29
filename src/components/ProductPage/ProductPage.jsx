@@ -12,9 +12,9 @@ export const ProductPage = (props) => {
         .get(`https://backend-trcq.onrender.com/api/dish/get?id=${id}`)
         .then((res) => res.data),
     {
-        refetchInterval: false,
-        refetchIntervalInBackground: false,
-    }
+      refetchInterval: false,
+      refetchIntervalInBackground: false,
+    },
   );
 
   if (isLoading) return <center>Загрузка...</center>;
@@ -30,16 +30,18 @@ export const ProductPage = (props) => {
         <span className="text-[25px] font-medium">{product.name}</span>
       </div>
       <div className="w-full p-desc">
-        <p className="text-[18px] font-medium ">
-            {product.description}
-        </p>
+        <p className="text-[18px] font-medium ">{product.description}</p>
       </div>
       <div className="spacer mt-auto"></div>
       <div className="w-full p-price">
-        <span className="text-[25px] font-medium">Цена: {product.price}&nbsp;₽</span>
+        <span className="text-[25px] font-medium">
+          Цена: {product.price}&nbsp;₽
+        </span>
       </div>
       <div className="w-full p-btn">
-        <Button className="w-full" primary>Добавить в корзину</Button>
+        <Button className="w-full" primary>
+          Добавить в корзину
+        </Button>
       </div>
     </div>
   );

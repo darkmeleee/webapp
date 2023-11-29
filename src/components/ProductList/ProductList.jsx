@@ -11,15 +11,14 @@ import { PirogiSwitch } from "../Switch/Switch";
 import { CartContext } from "../../context/CartContext";
 
 const ProductList = () => {
-
-  const { cartItems, addToCart, getCartTotal } = useContext(CartContext)
+  const { cartItems, addToCart, getCartTotal } = useContext(CartContext);
   const { isLoading, isSuccess, data, error } = useQuery(["products"], () =>
     axios
       .get("https://backend-trcq.onrender.com/api/dish/getAll")
-      .then((res) => res.data)
+      .then((res) => res.data),
   );
   let sweet = [];
-  let sitnoe = []
+  let sitnoe = [];
   if (isSuccess) {
     sweet = data.filter((el) => el.type == 1);
     sitnoe = data.filter((el) => el.type == 0);

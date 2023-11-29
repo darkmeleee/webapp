@@ -2,7 +2,7 @@ import constructor from "../../assets/constructor.png";
 import Button from "../Button/Button";
 import { NachinkaSelect } from "./NachinkaSelect";
 import { useState, useEffect } from "react";
-import "./ConstructorPage.scss"
+import "./ConstructorPage.scss";
 import { Select } from "./Select";
 
 export const ConstructorPage = (props) => {
@@ -67,7 +67,10 @@ export const ConstructorPage = (props) => {
             <option value="0">Сытный</option>
             <option value="1">Сладкий</option>
           </select> */}
-          <Select defaultValue={1} onChange={(_, newValue) => changeBase(newValue)}>
+          <Select
+            defaultValue={1}
+            onChange={(_, newValue) => changeBase(newValue)}
+          >
             <Select.Option value={0}>Сытный</Select.Option>
             <Select.Option value={1}>Сладкий</Select.Option>
           </Select>

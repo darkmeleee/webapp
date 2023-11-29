@@ -6,7 +6,9 @@ const bgInactiveColor = "#683B2B";
 const bgActiveColor = "#EAD0B9";
 
 export const PirogiSwitch = (props) => {
-  return <Switch {...props}  className={"PirogiSwitch " + props?.className ?? ""} />;
+  return (
+    <Switch {...props} className={"PirogiSwitch " + props?.className ?? ""} />
+  );
 };
 
 // export const PirogiSwitch = styled(Switch)(({ theme }) => ({

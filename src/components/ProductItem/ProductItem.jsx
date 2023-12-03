@@ -28,7 +28,7 @@ const ProductItem = ({ product, onAdd, canRemove, onRemove }) => {
           alt={product.name}
         />
       </Link>
-      <div className="text-[18px] ">{product.name}</div>
+      <div className="text-[18px] ">{product.name} {product.quantity > 0 ? "(" + (product.quantity) + ")" : ""}</div>
       <div className="spacer mt-auto"></div>
       <Button primary className="add-btn" onClick={onAddHandler}>
         {product.price}&nbsp;₽

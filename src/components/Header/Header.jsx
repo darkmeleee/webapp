@@ -39,7 +39,7 @@ const Header = () => {
         </a>
       </div>
       <div className="logo cursor-pointer h-[118px]">
-        <img src={logo} onClick={onReturnButtonClick}></img>
+        <img src={logo} onClick={onClickUsername}></img>
       </div>
       <div className="cursor-pointer flex">
         <span className="absolute h-6 w-6 place-items-center place-content-center flex self-start ml-[22px] -mt-[4px] z-10 bg-brown-accent rounded-full border-[1px] text-white border-white">

@@ -52,14 +52,7 @@ const ProductList = () => {
   const onAdd = (product) => {
     addToCart(product);
 
-    if (cartItems.length === 0) {
-      tg.MainButton.hide();
-    } else {
-      tg.MainButton.show();
-      tg.MainButton.setParams({
-        text: `Купить ${getCartTotal()}`,
-      });
-    }
+   
   };
   function pirogiSwitchToggle(e) {
     setIsSweet(!isSweet);

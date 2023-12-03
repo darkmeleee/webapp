@@ -7,6 +7,7 @@ export const CartPage = (props) => {
   const { cartItems, removeFromCart } = React.useContext(CartContext);
   function removeHandler(item) {
     removeFromCart(item);
+    console.log(item);
   }
   return (
     <div className="flex flex-col h-[calc(100vh_-_158px)] p-0 xxs:p-5 pb-8 px-4 gap-y-6 text-brown-accent font-medium">

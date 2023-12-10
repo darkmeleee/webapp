@@ -13,6 +13,7 @@ import { ProductPage } from "./components/ProductPage/ProductPage";
 import { ConstructorPage } from "./components/ConstructorPage/ConstructorPage";
 import { CartPage } from "./components/CartPage/CartPage";
 import { CartProvider } from "./context/CartContext";
+import { StagingPage } from "./components/StagingPage/StagingPage";
 
 const queryClient = new QueryClient({});
 
@@ -39,6 +40,7 @@ function App() {
             <Route path={"product/:id"} element={<ProductPage />} />
             <Route path={"constructor"} element={<ConstructorPage />} />
             <Route path={"cart"} element={<CartPage />} />
+            <Route path={"staging"} element={<StagingPage />} />
           </Routes>
         </div>
       </CartProvider>

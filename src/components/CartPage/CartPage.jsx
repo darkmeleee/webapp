@@ -26,7 +26,7 @@ export const CartPage = (props) => {
       </div>
       <div className="spacer mt-auto"></div>
       <div>
-        <Button primary className="w-full font-normal">
+        <Button primary to="/staging" className="w-full font-normal">
           Оформить заказ
         </Button>
       </div>

@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         'brown-accent': '#683B2B',
+        'brown-light': '#EAD0B9',
         'tg-theme-bg': 'var(--tg-theme-bg-color)',
       }
     },

@@ -13,7 +13,7 @@ const Header = () => {
   const history = useNavigate();
 
   function onClickUsername() {
-    history("/lk");
+    history("/");
     //  alert(user.id);
 
     //{user?.username ? user?.username : "darkmeleee" }

@@ -19,7 +19,7 @@ const Button = (props) => {
       className={
         props?.className +
         " button rounded-xl text-[20px] "
-        + (props?.primary ? " !bg-brown-accent !text-white " : " !bg-transparent !text-black !outline-2 !outline-brown-accent !outline ")
+        + (props?.primary ? " !bg-brown-accent !text-white " : " !bg-transparent !text-black !outline !outline-2 !outline-offset-2 !outline-brown-accent  ")
         + (props?.rounded ? " !rounded-[50px] " : "  ")
       }
     />

@@ -18,8 +18,9 @@ const Button = (props) => {
       onClick={props?.onClick ?? ( props.to ? doRedir : ()=>{console.log('aboba')} )}
       className={
         props?.className +
-        " button rounded-xl text-[20px] " +
-        (props?.primary ? " !bg-brown-accent !text-white " : " ")
+        " button rounded-xl text-[20px] "
+        + (props?.primary ? " !bg-brown-accent !text-white " : " !bg-transparent !text-black !outline-2 !outline-brown-accent !outline ")
+        + (props?.rounded ? " !rounded-[50px] " : "  ")
       }
     />
   );

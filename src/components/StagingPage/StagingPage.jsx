@@ -1,5 +1,5 @@
 import { FormControl, RadioGroup } from "@mui/material";
-import { RadioButton as Radio } from "../RadioButton/RadioButton";
+import { RadioButton } from "../RadioButton/RadioButton";
 import Button from "../Button/Button";
 import { Input } from "../Input/Input";
 import { useQuery } from "react-query";
@@ -12,6 +12,7 @@ export const StagingPage = ({}) => {
     "ул.Пушкина, д.14",
     "ул.Пушкина, д.14",
   ];
+  const availableChange = [1000, 5000];
 
   const { isLoading, isError, data, error, refetch, isFetched } = useQuery(
     ["userdata"],
@@ -94,7 +95,7 @@ export const StagingPage = ({}) => {
   };
   const selfPickupAddressChange = (e) => {
     setSelfPickupAddress(addresses[e.target.value]);
-  }
+  };
 
   return (
     <div className="flex flex-col min-h-[calc(100vh_-_158px)] p-3 pb-8 gap-y-5 text-brown-accent">
@@ -108,8 +109,8 @@ export const StagingPage = ({}) => {
           defaultValue={"delivery"}
           onChange={shipTypeChange}
         >
-          <Radio value={"delivery"}>Доставка</Radio>
-          <Radio value={"selfpickup"}>Самовывоз</Radio>
+          <RadioButton value={"delivery"}>Доставка</RadioButton>
+          <RadioButton value={"selfpickup"}>Самовывоз</RadioButton>
         </RadioGroup>
       </FormControl>
 
@@ -154,21 +155,41 @@ export const StagingPage = ({}) => {
                 defaultValue={"cardOnline"}
                 onChange={paymentTypeChange}
               >
-                <Radio labelClassName="!text-[19px]" value={"cardOnline"}>
+                <RadioButton labelClassName="!text-[19px]" value={"cardOnline"}>
                   Картой онлайн
-                </Radio>
-                <Radio labelClassName="!text-[19px]" value={"cardCourier"}>
+                </RadioButton>
+                <RadioButton labelClassName="!text-[19px]" value={"cardCourier"}>
                   Картой курьеру
-                </Radio>
-                <Radio labelClassName="!text-[19px]" value={"cash"}>
+                </RadioButton>
+                <RadioButton labelClassName="!text-[19px]" value={"cash"}>
                   Наличными
-                </Radio>
+                </RadioButton>
               </RadioGroup>
             </FormControl>
+            {paymentType === "cash" ? (
+              <>
+                <p className="text-[22px] py-2">Понадобится сдача</p>
+                <div className="flex gap-x-5">
+                  {availableChange.map((el) => (
+                    <Button
+                      key={el}
+                      primary={change === el}
+                      onClick={() => {setChange(el)}}
+                      className="w-fit"
+                      rounded
+                    >
+                      {el} ₽
+                    </Button>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <></>
+            )}
           </div>
         </>
       ) : (
-        <div className="flex flex-col h-full p-3 pb-8 gap-y-5 text-brown-accent">
+        <div className="paymentType flex flex-col h-full p-3 pb-8 gap-y-5 text-brown-accent">
           <FormControl>
             <RadioGroup
               className="gap-y-[20px] "
@@ -177,14 +198,14 @@ export const StagingPage = ({}) => {
               onChange={selfPickupAddressChange}
             >
               {addresses.map((el, i) => (
-                <Radio
+                <RadioButton
                   labelPlacement="start"
                   className="!text-[25px] border-b-2 border-b-[rgba(104,59,43,0.62)] !place-content-between !ml-0"
                   key={i}
                   value={i}
                 >
                   {el}
-                </Radio>
+                </RadioButton>
               ))}
             </RadioGroup>
           </FormControl>

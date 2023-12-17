@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import "./ProductList.css";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "../../components/ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram";
 import { useCallback, useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 
 import { useNavigate } from "react-router-dom";
-import { PirogiSwitch } from "../Switch/Switch";
+import { PirogiSwitch } from "../../components/Switch/Switch";
 import { CartContext } from "../../context/CartContext";
 
 const ProductList = () => {

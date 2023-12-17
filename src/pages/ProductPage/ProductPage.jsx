@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
-import Button from "../Button/Button";
+import Button from "../../components/Button/Button";
 
 export const ProductPage = (props) => {
   const { id } = useParams();

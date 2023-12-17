@@ -1,7 +1,7 @@
 import { FormControl, RadioGroup } from "@mui/material";
-import { RadioButton } from "../RadioButton/RadioButton";
-import Button from "../Button/Button";
-import { Input } from "../Input/Input";
+import { RadioButton } from "../../components/RadioButton/RadioButton";
+import Button from "../../components/Button/Button";
+import { Input } from "../../components/Input/Input";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useState, useEffect } from "react";

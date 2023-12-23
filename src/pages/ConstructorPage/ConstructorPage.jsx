@@ -1,5 +1,5 @@
 import constructor from "../../assets/constructor.png";
-import Button from "../Button/Button";
+import Button from "../../components/Button/Button";
 import { NachinkaSelect } from "./NachinkaSelect";
 import { useState, useEffect } from "react";
 import "./ConstructorPage.scss";

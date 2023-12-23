@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./ProductList.css";
+import "./ListPage.css";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import { useTelegram } from "../../hooks/useTelegram";
 import { useCallback, useEffect } from "react";
@@ -9,12 +9,13 @@ import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { PirogiSwitch } from "../../components/Switch/Switch";
 import { CartContext } from "../../context/CartContext";
+import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
 
 const ProductList = () => {
   const { cartItems, addToCart, getCartTotal } = useContext(CartContext);
   const { isLoading, isSuccess, data, error } = useQuery(["products"], () =>
     axios
-      .get("https://backend-trcq.onrender.com/api/dish/getAll")
+      .get(`https://backend-trcq.onrender.com/api/dish/getAll`)
       .then((res) => res.data),
   );
   let sweet = [];
@@ -43,7 +44,7 @@ const ProductList = () => {
     };
   }, [onSendData]);
 
-  if (isLoading) return <center>Загрузка...</center>;
+  if (isLoading) return <CenteredLoading/>;
 
   if (error) {
     return "Произошла ошибка: " + error.message;

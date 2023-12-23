@@ -23,7 +23,7 @@ const Order = () => {
       street,
     };
     tg.sendData(JSON.stringify(data));
-    fetch("https://backend-trcq.onrender.com/api/order/create", {
+    fetch(`${process.env.REACT_APP_API_URL}/api/order/create`, {
       method: "POST",
       body: JSON.stringify({
         price: totalPrice,

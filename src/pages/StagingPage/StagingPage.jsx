@@ -1,12 +1,18 @@
-import { FormControl, RadioGroup } from "@mui/material";
+import { FormControl, FormGroup, RadioGroup } from "@mui/material";
 import { RadioButton } from "../../components/RadioButton/RadioButton";
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { useQuery } from "react-query";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { CheckboxButton } from "../../components/Checkbox/Checkbox";
+import { Select } from "../../components/Select/Select";
+import { useNavigate } from "react-router-dom";
+import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
 
 export const StagingPage = ({}) => {
+  const history = useNavigate();
+
   const addresses = [
     "ул.Пушкина, д.14",
     "ул.Пушкина, д.14",
@@ -18,14 +24,14 @@ export const StagingPage = ({}) => {
     ["userdata"],
     async () =>
       axios
-        .get(`https://backend-trcq.onrender.com/api/user/get?id=0`)
+        .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=0`)
         .then((res) => res.data)
   );
 
   const [shipType, setShipType] = useState("delivery");
   const [deliveryTime, setDeliveryTime] = useState(0);
   const [deliverQuick, setDeliverQuick] = useState(true);
-  const [paymentType, setPaymentType] = useState("cash");
+  const [paymentType, setPaymentType] = useState("cardOnline");
   const [selfPickupAddress, setSelfPickupAddress] = useState(addresses[0]);
   const [change, setChange] = useState(1000);
   function getButtonLabelPaymentType() {
@@ -69,7 +75,7 @@ export const StagingPage = ({}) => {
     }
   }, [data]);
 
-  if (isLoading) return <center>Загрузка...</center>;
+  if (isLoading) return <CenteredLoading/>;
 
   if (error) {
     return "An error has occurred: " + error.message;
@@ -96,6 +102,15 @@ export const StagingPage = ({}) => {
   const selfPickupAddressChange = (e) => {
     setSelfPickupAddress(addresses[e.target.value]);
   };
+  const deliverQuickChange = (e) => {
+    setDeliverQuick(e.target.checked);
+  };
+
+  function performOrder() {
+    // req to serv
+    const orderId = 1;
+    history(`/orderReady`, { state: { orderId: orderId } })
+  }
 
   return (
     <div className="flex flex-col min-h-[calc(100vh_-_158px)] p-3 pb-8 gap-y-5 text-brown-accent">
@@ -137,13 +152,23 @@ export const StagingPage = ({}) => {
 
           <div>
             <p className="text-[22px]">Укажите время доставки</p>
-            <Input
-              value={deliveryTime}
-              disabled={deliverQuick}
-              placeholder=""
-            />
-            ЧЕКБОКС СДЕЛАЕШЬ
-            {/* Checkbox */}
+            {deliverQuick ? (
+              <Input disabled={true} value="В ближайшее время" />
+            ) : (
+              <Select className="w-[90%]" />
+            )}
+            <FormControl>
+              <FormGroup onChange={deliverQuickChange}>
+                <CheckboxButton
+                  defaultChecked={true}
+                  checked={deliverQuick}
+                  name={"deliverQuick"}
+                  labelClassName="text-[19px]"
+                >
+                  Доставить в ближайшее время
+                </CheckboxButton>
+              </FormGroup>
+            </FormControl>
           </div>
 
           <div>
@@ -158,7 +183,10 @@ export const StagingPage = ({}) => {
                 <RadioButton labelClassName="!text-[19px]" value={"cardOnline"}>
                   Картой онлайн
                 </RadioButton>
-                <RadioButton labelClassName="!text-[19px]" value={"cardCourier"}>
+                <RadioButton
+                  labelClassName="!text-[19px]"
+                  value={"cardCourier"}
+                >
                   Картой курьеру
                 </RadioButton>
                 <RadioButton labelClassName="!text-[19px]" value={"cash"}>
@@ -174,7 +202,9 @@ export const StagingPage = ({}) => {
                     <Button
                       key={el}
                       primary={change === el}
-                      onClick={() => {setChange(el)}}
+                      onClick={() => {
+                        setChange(el);
+                      }}
                       className="w-fit"
                       rounded
                     >
@@ -213,7 +243,7 @@ export const StagingPage = ({}) => {
       )}
 
       <div>
-        <Button primary to="/staging" className="w-full font-normal">
+        <Button primary onClick={performOrder} className="w-full font-normal">
           {buttonLabel}
         </Button>
       </div>

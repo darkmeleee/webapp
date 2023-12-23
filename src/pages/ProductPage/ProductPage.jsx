@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import axios from "axios";
 import Button from "../../components/Button/Button";
+import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
 
 export const ProductPage = (props) => {
   const { id } = useParams();
@@ -9,7 +10,7 @@ export const ProductPage = (props) => {
     ["products", id],
     () =>
       axios
-        .get(`https://backend-trcq.onrender.com/api/dish/get?id=${id}`)
+        .get(`${process.env.REACT_APP_API_URL}/api/dish/get?id=${id}`)
         .then((res) => res.data),
     {
       refetchInterval: false,
@@ -17,7 +18,7 @@ export const ProductPage = (props) => {
     },
   );
 
-  if (isLoading) return <center>Загрузка...</center>;
+  if (isLoading) return <CenteredLoading/>;
 
   const product = data;
 

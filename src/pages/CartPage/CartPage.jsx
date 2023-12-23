@@ -1,7 +1,7 @@
-import Button from "../Button/Button";
+import Button from "../../components/Button/Button";
 import * as React from "react";
 import { CartContext } from "../../context/CartContext";
-import ProductItem from "../ProductItem/ProductItem";
+import ProductItem from "../../components/ProductItem/ProductItem";
 
 export const CartPage = (props) => {
   const { cartItems, removeFromCart } = React.useContext(CartContext);

@@ -5,15 +5,15 @@ import "react-dadata/dist/react-dadata.css";
 import styled from "styled-components";
 import axios from "axios";
 import { useQuery } from "react-query";
-import { Input } from "../Input/Input";
+import { Input } from "../../components/Input/Input";
+import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
 
-//   .get(`https://backend-trcq.onrender.com/api/user/get?id=${user.id}`)
 const Lk = () => {
   const { isLoading, isError, data, error, refetch, isFetched } = useQuery(
     ["userdata"],
     async () =>
       axios
-        .get(`https://backend-trcq.onrender.com/api/user/get?id=0`)
+        .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=${user.id}`)
         .then((res) => res.data)
   );
   const [username, setUsername] = useState();
@@ -58,7 +58,7 @@ const Lk = () => {
     setAddress(e.target.value);
   };
 
-  if (isLoading) return "Загрузка...";
+  if (isLoading) return <CenteredLoading/>;
 
   if (error) {
     return "An error has occurred: " + error.message;

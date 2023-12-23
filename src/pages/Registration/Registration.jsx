@@ -53,7 +53,7 @@ const Lk = () => {
     console.log();
     axios({
       method: "post",
-      url: "https://backend-trcq.onrender.com/api/user/create",
+      url: "${process.env.REACT_APP_API_URL}/api/user/create",
       headers: {},
       data: {
         name: username,

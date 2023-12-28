@@ -3,13 +3,44 @@ import { RadioButton } from "../../components/RadioButton/RadioButton";
 import Button from "../../components/Button/Button";
 import { Input } from "../../components/Input/Input";
 import { useQuery } from "react-query";
+import { useContext } from 'react';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { CheckboxButton } from "../../components/Checkbox/Checkbox";
 import { Select } from "../../components/Select/Select";
 import { useNavigate } from "react-router-dom";
 import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
+import { CartContext } from "../../context/CartContext";
+import { YooCheckout, ICreatePayment  } from '@a2seven/yoo-checkout';
+const checkout = new YooCheckout({ shopId: '298896', secretKey: 'test_kV50VmccKgh4UXXNbe1LhhdCSgu7Zrx91cnnYcKkHZA' });
+const { v4: uuidv4 } = require('uuid');
 
+async function createPay(){
+  const createPayload: ICreatePayment = {
+    amount: {
+        value: '2.00',
+        currency: 'RUB'
+    },
+    payment_method_data: {
+        type: 'bank_card'
+    },
+    confirmation: {
+        type: 'redirect',
+        return_url: 'test'
+    }
+};
+
+try {
+    const payment = await checkout.createPayment(createPayload, idempotenceKey);
+    console.log(payment)
+} catch (error) {
+     console.error(error);
+}
+}
+
+
+
+  
 export const StagingPage = ({}) => {
   const history = useNavigate();
 
@@ -106,10 +137,51 @@ export const StagingPage = ({}) => {
     setDeliverQuick(e.target.checked);
   };
 
-  function performOrder() {
-    // req to serv
-    const orderId = 1;
-    history(`/orderReady`, { state: { orderId: orderId } })
+  async function performOrder() {
+     // process.env.REACT_APP_API_URL+ '/api/order/create',  
+     axios.post(process.env.REACT_APP_API_URL+ '/api/order/create', {
+      "price": 1111,
+      "pickup": 1,
+      "status": "INWORK",
+      "authorId": 1
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(async function (response) {
+      const orderId = response.data.id;
+      const price = response.data.price;
+      const idempotenceKey = '02347fc4-a1f0-49db-807e-f0d67c2ed5a5';
+      const createPayload: ICreatePayment = {
+        amount: {
+         value: '2.00',
+         currency: 'RUB'
+      },
+      payment_method_data: {
+          type: 'bank_card'
+      },
+      confirmation: {
+          type: 'redirect',
+          return_url: 'http://darkmeleee.xyz'
+        }
+      };
+
+      try {
+        const payment = await checkout.createPayment(createPayload, idempotenceKey);
+        console.log(payment)
+      } catch (error) {
+        console.error(error);
+    }
+    //  history(`/orderReady`, { state: { orderId: orderId } })
+    })
+
+ 
+ 
+
+          
+    
+    
   }
 
   return (

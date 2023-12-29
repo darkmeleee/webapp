@@ -4,7 +4,7 @@ import { CartContext } from "../../context/CartContext";
 import ProductItem from "../../components/ProductItem/ProductItem";
 
 export const CartPage = (props) => {
-  const { cartItems, removeFromCart } = React.useContext(CartContext);
+  const { cartItems, removeFromCart, getCartTotal } = React.useContext(CartContext);
   function removeHandler(item) {
     removeFromCart(item);
     console.log(item);
@@ -27,7 +27,7 @@ export const CartPage = (props) => {
       <div className="spacer mt-auto"></div>
       <div>
         <Button primary to="/staging" className="w-full font-normal">
-          Оформить заказ
+          Оформить заказ | { getCartTotal() } ₽
         </Button>
       </div>
     </div>

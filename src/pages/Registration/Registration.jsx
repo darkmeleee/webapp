@@ -46,21 +46,22 @@ const Lk = () => {
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+  
 
-  function sellRabstvo() {
+ async function sellRabstvo() {
     // alert(`user: ${username} | ${phone} | ${email} | ${street.unrestricted_value}`);
     //console.log(street);
-    console.log();
-    axios({
+  
+   await axios({
       method: "post",
-      url: "${process.env.REACT_APP_API_URL}/api/user/create",
+      url: `${process.env.REACT_APP_API_URL}/api/user/create`,
       headers: {},
       data: {
         name: username,
         number: phone,
         tgid: user.id,
         email: email,
-        adress: street,
+        adress: street.value,
       },
     });
     history("/");

@@ -2,10 +2,24 @@
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import { useLocation } from 'react-router-dom';
 import Button from '../../components/Button/Button';
+import React from "react"
+
 
 export const OrderReadyPage = ({}) => {
   const { state } = useLocation();
-  const { orderId } = state;
+  console.log("state: ");
+  console.log(state);
+  var orderId;
+
+  if (state ) { 
+    orderId = state.orderId; 
+  }
+  else{ 
+    const queryParameters = new URLSearchParams(window.location.search)
+    const id = queryParameters.get("id")
+    orderId = id; 
+  }
+
 
   return (
     <div className="flex flex-col min-h-[calc(100vh_-_158px)] p-3 pb-8 gap-y-5 text-brown-accent">

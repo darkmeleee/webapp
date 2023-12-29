@@ -46,7 +46,7 @@ export const StatusPage = ({}) => {
           </span>
         </div>
         <div className="slider w-full">
-          <Slider disabled value={50} />
+          <Slider disabled value={0} />
         </div>
         <div className="status-text text-[19px]">
           Принят

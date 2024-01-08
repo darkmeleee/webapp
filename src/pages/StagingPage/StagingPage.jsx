@@ -164,24 +164,26 @@ export const StagingPage = ({}) => {
    
     })}
     else{
-      console.log(paymentType); 
-      await axios.post(process.env.REACT_APP_API_URL+ '/api/order/create', {
-        "price": total,
-        "pickup": 1,
-        "status": "INWORK",
-        "authorId": 1
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
+      await axios.get(process.env.REACT_APP_API_URL+ '/api/user/get?id=' + user.id)
+        .then(async function (response) {
+          await axios.post(process.env.REACT_APP_API_URL+ '/api/order/create', {
+            "price": total,
+            "pickup": 1,
+            "status": "INWORK",
+            "authorId": response.data.id
+          }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
       .then(async function (response) {
         const orderId = response.data.id;
-        clearCart();
+        clearCart()
         history(`/orderReady`, { state: { orderId: orderId } })
         
         
     })
+  }) 
   }
 
  

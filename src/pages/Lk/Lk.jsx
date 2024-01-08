@@ -9,6 +9,7 @@ import { Input } from "../../components/Input/Input";
 import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
 
 const Lk = () => {
+  const { user, tg } = useTelegram();
   const { isLoading, isError, data, error, refetch, isFetched } = useQuery(
     ["userdata"],
     async () =>
@@ -32,6 +33,7 @@ const Lk = () => {
       setUsername(data.name);
       setPhone(data.number);
       setEmail(data.email);
+      setAddress(data.adress);
     }
   }, [data]);
 

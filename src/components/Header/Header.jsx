@@ -6,6 +6,7 @@ import cart from "../../icons/cart.svg";
 import { useTelegram } from "../../hooks/useTelegram";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { CartContext } from "../../context/CartContext";
 
 const Header = () => {
@@ -26,6 +27,9 @@ const Header = () => {
   function gotoCart() {
     history("/cart");
   }
+  function gotoLk() {
+    history("/lk");
+  }
 
   return (
     <div className="flex flex-row w-screen justify-between md:justify-around place-items-center p-5">
@@ -41,11 +45,14 @@ const Header = () => {
       <div className="logo cursor-pointer h-[118px]">
         <img src={logo} onClick={onClickUsername}></img>
       </div>
+      <div onClick={gotoLk} className="relative z-0 h-[36px] w-[36px] cursor-pointer text-brown-accent">
+        <AccountCircleIcon color="inherit" className="!w-full !h-full"  />
+      </div>
       <div className="cursor-pointer flex">
         <span className="absolute h-6 w-6 place-items-center place-content-center flex self-start ml-[22px] -mt-[4px] z-10 bg-brown-accent rounded-full border-[1px] text-white border-white">
           {cartItems.reduce((acc, item) => (acc += item.quantity), 0)}
         </span>
-        <img src={cart} className="relative z-0s" onClick={gotoCart} />
+        <img src={cart} className="relative z-0" onClick={gotoCart} />
       </div>
     </div>
   );

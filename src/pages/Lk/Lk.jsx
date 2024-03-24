@@ -7,6 +7,9 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { Input } from "../../components/Input/Input";
 import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
+const locations = {
+  city: "Екатеринбург",
+};
 
 const Lk = () => {
   const { user, tg } = useTelegram();
@@ -14,7 +17,8 @@ const Lk = () => {
     ["userdata"],
     async () =>
       axios
-        .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=${user.id}`)
+       //.get(`${process.env.REACT_APP_API_URL}/api/user/get?id=${user.id}`)
+        .get(`${process.env.REACT_APP3_API_URL}/api/user/get?id=866684831`)
         .then((res) => res.data)
   );
   const [username, setUsername] = useState();
@@ -22,14 +26,8 @@ const Lk = () => {
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
 
-  function initData() {
-    console.log(data.name);
-    setUsername(data.name);
-  }
-
   useEffect(() => {
-    if (isFetched) {
-      console.log(data);
+    if (isFetched) {-
       setUsername(data.name);
       setPhone(data.number);
       setEmail(data.email);
@@ -66,8 +64,20 @@ const Lk = () => {
     return "An error has occurred: " + error.message;
   }
 
-  function sellRabstvo() {
-    console.log(data);
+  async function sellRabstvo() {
+    axios({
+      method: 'post',
+      url: `${process.env.REACT_APP_API_URL}/api/user/update`,
+      headers: {},
+      data: {
+        "id": 866684831,
+        "name": username,
+        "number": phone,
+        "email": email,
+        "adress": address
+      }
+    });
+    <CenteredLoading></CenteredLoading>
   }
 
   return (
@@ -85,10 +95,20 @@ const Lk = () => {
         placeholder="Email"
         type="email"
       />
-      <Input value={address} onChange={onChangeAddress} placeholder="Адрес" />
+      <AddressSuggestions
+        token="69a955bf27ce46407c3c605bcd923a96458d519b"
+        value={address}
+        onChange={setAddress}
+        filterLocations={locations}
+        inputProps={{
+          placeholder: "Адрес",
+        }}
+      />
       <p className="text1">Бонусы: {125} баллов</p>
       <Button onClick={sellRabstvo}>Сохранить</Button>
+      <a href="/history">История заказов</a>
     </div>
+    
   );
 };
 

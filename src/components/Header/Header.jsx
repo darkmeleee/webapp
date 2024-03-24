@@ -8,27 +8,36 @@ import "./Header.css";
 import { useNavigate } from "react-router-dom";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { CartContext } from "../../context/CartContext";
+import { useLocation } from 'react-router-dom'
+
 
 const Header = () => {
   const { cartItems } = useContext(CartContext);
   const history = useNavigate();
+  const location = useLocation();
+
 
   function onClickUsername() {
-    history("/");
-    //  alert(user.id);
-
-    //{user?.username ? user?.username : "darkmeleee" }
-    //             <Button className={'username'} onClick={onClickUsername}>Личный кабинет</Button>
+    if(location.pathname != "/reg"){
+      history("/");
+    }
   }
 
   function onReturnButtonClick() {
-    history(-1);
+    if(location.pathname != "/reg"){
+      console.log(location.pathname);
+      history(-1);
+    }
   }
   function gotoCart() {
-    history("/cart");
+    if(location.pathname != "/reg"){
+      history("/cart");
+    }
   }
   function gotoLk() {
-    history("/lk");
+    if(location.pathname != "/reg"){
+      history("/lk");
+    }
   }
 
   return (

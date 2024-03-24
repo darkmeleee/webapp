@@ -42,7 +42,8 @@ export const StagingPage = ({}) => {
     ["userdata"],
     async () =>
       axios
-        .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=${user.id}`)
+       // .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=${user.id}`)
+          .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=866684831`)
         .then((res) => res.data)
   );
 
@@ -135,7 +136,8 @@ export const StagingPage = ({}) => {
       "price": total,
       "pickup": 1,
       "status": "INWORK",
-      "authorId": 1
+      "sostav": JSON.stringify(cartItems),
+      "authorId": 866684831
     }, {
       headers: {
         'Content-Type': 'application/json'
@@ -144,12 +146,14 @@ export const StagingPage = ({}) => {
     .then(async function (response) {
       const orderId = response.data.id;
       const price = response.data.price;
+      const currentHost = `${window.location.protocol}//${window.location.hostname}:${window.location.port}`;
+
       
 
       await axios.post(process.env.REACT_APP_API_URL+ '/api/order/createPayment', {
        "price": price,
        "orderId": orderId,
-       "url": `https://feb0-46-48-56-246.ngrok-free.app/orderReady?id=${orderId}`
+       "url": `${currentHost}/orderReady?id=${orderId}`
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -164,13 +168,16 @@ export const StagingPage = ({}) => {
    
     })}
     else{
-      await axios.get(process.env.REACT_APP_API_URL+ '/api/user/get?id=' + user.id)
+          await axios.get(process.env.REACT_APP_API_URL+ '/api/user/get?id=' + user.id)
+        //await axios.get(process.env.REACT_APP_API_URL+ '/api/user/get?id=866684831')
         .then(async function (response) {
           await axios.post(process.env.REACT_APP_API_URL+ '/api/order/create', {
             "price": total,
             "pickup": 1,
             "status": "INWORK",
-            "authorId": response.data.id
+            "sostav": JSON.stringify(cartItems),
+           // "authorId": response.data.id
+            "authorId": 866684831
           }, {
           headers: {
             'Content-Type': 'application/json'

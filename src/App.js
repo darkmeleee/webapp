@@ -16,7 +16,8 @@ import { CartProvider } from "./context/CartContext";
 import { StagingPage } from "./pages/StagingPage/StagingPage";
 import { StatusPage } from "./pages/StatusPage/StatusPage";
 import { OrderReadyPage } from "./pages/OrderReadyPage/OrderReadyPage";
-
+import OrderHistory from "./pages/OrderHistory/OrderHistory";
+import { OrderPage } from "./pages/OrderPage/OrderPage";
 const queryClient = new QueryClient({});
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
             <Route path={"staging"} element={<StagingPage />} />
             <Route path={"status/:orderId"} element={<StatusPage />} />
             <Route path={"orderReady"} element={<OrderReadyPage />} />
+            <Route path={"history"} element={<OrderHistory />} />
+            <Route path={"history/order/:id"} element={<OrderPage />} />
           </Routes>
         </div>
       </CartProvider>

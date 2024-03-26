@@ -11,21 +11,41 @@ import { PirogiSwitch } from "../../components/Switch/Switch";
 import { CartContext } from "../../context/CartContext";
 import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoading";
 
+
 const ProductList = () => {
+  const history = useNavigate();
+
   const { cartItems, addToCart, getCartTotal } = useContext(CartContext);
   const { isLoading, isSuccess, data, error } = useQuery(["products"], () =>
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/dish/getAll`) 
       .then((res) => res.data),
   );
+
+  
+    axios
+       .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=866684831`)
+       .then((res) => function(){if(res.status == 404){ console.log("404")}})
+       .catch(err => {
+        if(err.response.request.status == 404){
+          console.log("meow");
+          history('/reg')
+        }
+      })
+ 
+
+  
+  
   let sweet = [];
   let sitnoe = [];
+  
   if (isSuccess) {
-    sweet = data.filter((el) => el.type == 1);
-    sitnoe = data.filter((el) => el.type == 0);
+    sweet = data.filter((el) => el.type == 1 || el.type == 3);
+    sitnoe = data.filter((el) => el.type == 0 || el.type == 3);
+   
   }
 
-  const history = useNavigate();
+  
   const [isSweet, setIsSweet] = useState(true);
   const { tg, queryId } = useTelegram();
   const onSendData = useCallback(() => {
@@ -51,6 +71,9 @@ const ProductList = () => {
   }
 
   const onAdd = (product) => {
+    if(product.type == 3){
+      history('/constructor')
+    }
     addToCart(product);
 
    

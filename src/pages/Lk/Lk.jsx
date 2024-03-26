@@ -10,6 +10,8 @@ import { CenteredLoading } from "../../components/CenteredLoading/CenteredLoadin
 const locations = {
   city: "Екатеринбург",
 };
+import { AddressSuggestions } from "react-dadata";
+import "react-dadata/dist/react-dadata.css";
 
 const Lk = () => {
   const { user, tg } = useTelegram();
@@ -18,7 +20,7 @@ const Lk = () => {
     async () =>
       axios
        //.get(`${process.env.REACT_APP_API_URL}/api/user/get?id=${user.id}`)
-        .get(`${process.env.REACT_APP3_API_URL}/api/user/get?id=866684831`)
+        .get(`${process.env.REACT_APP_API_URL}/api/user/get?id=866684831`)
         .then((res) => res.data)
   );
   const [username, setUsername] = useState();
@@ -74,9 +76,10 @@ const Lk = () => {
         "name": username,
         "number": phone,
         "email": email,
-        "adress": address
+        "adress": address.value
       }
     });
+   
     <CenteredLoading></CenteredLoading>
   }
 

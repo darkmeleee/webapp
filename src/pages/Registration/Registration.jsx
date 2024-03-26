@@ -3,6 +3,7 @@ import "./Registration.scss";
 import { useTelegram } from "../../hooks/useTelegram";
 import { AddressSuggestions } from "react-dadata";
 import "react-dadata/dist/react-dadata.css";
+import { Input } from "../../components/Input/Input";
 import styled from "styled-components";
 import axios from "axios";
 
@@ -28,12 +29,12 @@ const Lk = () => {
     city: "Екатеринбург",
   };
   const Button = styled.button`
-    background-color: black;
+    background-color: #683b2b;
+    border-radius: 57px;
     color: white;
     font-size: 20px;
     padding: 10px 60px;
-    border-radius: 5px;
-    margin: 10px 0px;
+    margin: 10px 10px;
     cursor: pointer;
   `;
 
@@ -70,26 +71,18 @@ const Lk = () => {
   return (
     <div className={"form"}>
       <h1>Регистрация нового пользователя</h1>
-      <input
-        className={"input"}
-        type="text"
-        placeholder={"Имя"}
-        value={username}
-        onChange={onChangeName}
-      />
-      <input
-        className={"input"}
-        type="tel"
-        placeholder={"Телефон"}
+      <Input value={username} onChange={onChangeName} placeholder="Имя" />
+      <Input
         value={phone}
         onChange={onChangePhone}
+        placeholder={"Телефон"}
+        type="tel"
       />
-      <input
-        className={"input"}
-        type="email"
-        placeholder={"Email"}
+      <Input
         value={email}
         onChange={onChangeEmail}
+        placeholder="Email"
+        type="email"
       />
       <br></br>
       <AddressSuggestions
